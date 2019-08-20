@@ -1,0 +1,18 @@
+version: '3'
+services:
+    nodejs-web:
+      build:
+        context: .
+        dockerfile: Dockerfile.dev
+      ports:
+        - "3000:3000"
+      volumes:
+      #Everything in the folder where docker-compose file is there will match the folders on the local volume and a reference of the matching folder shall be created 
+        - .:/app
+    test:
+      build: 
+        context: .
+        dockerfile: Dockerfile.dev
+      volumes:
+        - .:/app
+      command: ["npm","run","test"]
