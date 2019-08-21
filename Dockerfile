@@ -12,6 +12,8 @@ RUN npm run build
 
 FROM nginx
 # --from=builder denotes that take the build folder from above mid generated image in the builder phase
+EXPOSE 80
+
 COPY --from=builder /app/build /usr/share/nginx/html
 
 #We dont need a CMD here as by default an nginx will start the ports 
